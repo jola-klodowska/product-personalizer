@@ -23,10 +23,7 @@ const Product = props => {
   };
 
   const getPrice = e => {
-    const additionalPrice = props.sizes.find(checkPrice)
-    console.log(additionalPrice);
     const calculatedPrice = props.basePrice + checkPrice();
-    console.log(calculatedPrice);
     return calculatedPrice;
   };
 
@@ -36,6 +33,16 @@ const Product = props => {
         return size.additionalPrice;
       };
     };
+  };
+
+  const sendOrder = e => {
+    e.preventDefault();
+    console.log('SUMMARY');
+    console.log('==========');
+    console.log('Name: ' + props.title);
+    console.log('Price: ' + getPrice());
+    console.log('Size: ' + currentSize);
+    console.log('Color: ' + currentColor);
   }
 
     return (
@@ -71,7 +78,7 @@ const Product = props => {
                   </li>)}
               </ul>
             </div>
-            <Button className={styles.button}>
+            <Button onClick={sendOrder} className={styles.button}>
               <span className="fa fa-shopping-cart" />
             </Button>
           </form>
