@@ -10,6 +10,16 @@ const Product = props => {
 
   const perpareColorClassName = color => {
     return styles['color' + color[0].toUpperCase() + color.substr(1).toLowerCase()];
+  };
+
+  const changeSize = e => {
+    e.preventDefault();
+    setCurrentSize(e.target.value);
+  };
+
+  const changeColor = e => {
+    e.preventDefault();
+    setCurrentColor(e.target.value);
   }
 
   return (
@@ -30,8 +40,8 @@ const Product = props => {
             <h3 className={styles.optionLabel}>Sizes</h3>
             <ul className={styles.choices}>
               {props.sizes.map(size =>
-                <li key={props.id}>
-                  <button type="button" className={currentSize === size.name && styles.active}>{size.name}</button>
+                <li key={size.id}>
+                  <button type="button" value={size.name} onClick={changeSize} className={currentSize === size.name && styles.active}>{size.name}</button>
                 </li>
               )}
             </ul>
@@ -40,8 +50,8 @@ const Product = props => {
             <h3 className={styles.optionLabel}>Colors</h3>
             <ul className={styles.choices}>
               {props.colors.map(color => 
-              <li key={props.id}>
-                <button type="button" className={clsx(perpareColorClassName(color), currentColor === color && styles.active )} />
+              <li key={color.id}>
+                <button type="button" value={color} onClick={changeColor} className={clsx(perpareColorClassName(color), currentColor === color && styles.active )} />
                 </li>)}
             </ul>
           </div>
