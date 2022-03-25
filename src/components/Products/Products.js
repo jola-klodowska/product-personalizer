@@ -13,8 +13,8 @@ const Products = () => {
         name={product.name}
         title={product.title}
         basePrice={product.basePrice}
-        colors = {product.colors}
-        sizes = {product.sizes}
+        colors={product.colors}
+        sizes={product.sizes}
       />)}
     </section>
   );
