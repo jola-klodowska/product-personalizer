@@ -1,6 +1,6 @@
 import styles from './Product.module.scss';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import ProductImage from '../ProductImage/ProductImage';
 import ProductOption from '../ProductOptions/ProductOption';
 
@@ -18,19 +18,18 @@ const Product = props => {
     setCurrentColor(e.target.value);
   };
 
-  const getPrice = e => {
-    const calculatedPrice = props.basePrice + checkPrice();
+  const getPrice = () => {
+    const calculatedPrice = props.basePrice + checkPrice;
     return calculatedPrice;
   };
 
-  const checkPrice = () => {
-
+  const checkPrice = useMemo(() => {
     for (const size of props.sizes) {
       if (currentSize === size.name) {
         return size.additionalPrice;
       };
     };
-  };
+  }, [currentSize]);
 
   const sendOrder = e => {
     e.preventDefault();
