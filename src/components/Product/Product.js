@@ -29,7 +29,7 @@ const Product = props => {
         return size.additionalPrice;
       };
     };
-  }, [currentSize]);
+  }, [currentSize, props.sizes]);
 
   const sendOrder = e => {
     e.preventDefault();
